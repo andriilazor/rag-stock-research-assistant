@@ -1,0 +1,43 @@
+[
+  {
+    "id": "q1",
+    "question": "What are the main risks Helix Biotech reports?",
+    "expected_answer": "Dependence on a single product candidate (HX-217), regulatory risk, reliance on a single contract manufacturer (Lonvia Pharma Services), royalty revenue concentration on Corvelin whose US patent expires in 2029, IP/patent expiry in 2034, pricing and reimbursement, need for additional capital.",
+    "key_facts": ["HX-217", "Lonvia", "Corvelin", "2029"],
+    "expected_sources": ["HLXB_risk_factors.md"]
+  },
+  {
+    "id": "q2",
+    "question": "What is the P/E ratio of NWE?",
+    "expected_answer": "35.5",
+    "key_facts": ["35.5"],
+    "expected_tools": ["get_financial_metrics"]
+  },
+  {
+    "id": "q3",
+    "question": "Why did Nordwind Energy's share price drop in early October 2026, and by how much?",
+    "expected_answer": "Gearbox defects forced Nordwind to take 14 of 62 turbines offline at the Skarvhavet wind farm. The share price fell from EUR 17.74 on 7 October to EUR 15.71 on 8 October, about -11.4%.",
+    "key_facts": ["gearbox", "Skarvhavet", "14", "15.71", "11"],
+    "expected_sources": ["NWE_2026-10-08_news_turbine_failures.md"],
+    "expected_tools": ["get_price_history", "search_reports"]
+  },
+  {
+    "id": "q4",
+    "question": "What is Nordwind Energy's current full-year 2026 revenue guidance?",
+    "expected_answer": "EUR 1.72–1.76 billion, lowered in the Q3 2026 report from EUR 1.80–1.85 billion.",
+    "key_facts": ["1.72", "1.76"],
+    "expected_sources": ["NWE_2026Q3_quarterly_report.md"]
+  },
+  {
+    "id": "q5",
+    "question": "How many employees does Vantera Logistics have?",
+    "expected_answer": "This information is not available in the provided data.",
+    "key_facts": ["not available"]
+  },
+  {
+    "id": "q6",
+    "question": "What is the latest closing price of ABCD?",
+    "expected_answer": "Ticker ABCD is not found in the data. Available tickers: NWE, HLXB, VTL.",
+    "key_facts": ["not found"]
+  }
+]
