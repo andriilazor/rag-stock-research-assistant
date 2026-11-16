@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from langchain_community.vectorstores import FAISS
@@ -11,6 +12,7 @@ CHUNK_SIZE = 800
 def read_report(path):
     _, header, body = path.read_text().split("---", 2)
     metadata = dict(line.split(": ", 1) for line in header.strip().splitlines())
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.DOTALL) # here we removing hidden HTML comments
     return metadata, body.strip()
   
 # group paragraphs into chunks
