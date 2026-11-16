@@ -26,17 +26,21 @@ def split_text(text):
     chunks.append(current.strip())
     return chunks
   
-texts, metadatas = [], []
-for path in sorted(Path("data/reports").glob("*.md")):
-    meta, body = read_report(path)
-    for chunk in split_text(body):
-        # the first line tells which company and document the chunk comes from for more context.
-        texts.append(f"{meta['company']} ({meta['ticker']}), {meta['doc_type']}, {meta['date']}\n{chunk}")
-        metadatas.append(
-            {"ticker": meta["ticker"], "doc_type": meta["doc_type"], "date": meta["date"], "source": path.name}
-        )
+def main():
+    texts, metadatas = [], []
+    for path in sorted(Path("data/reports").glob("*.md")):
+        meta, body = read_report(path)
+        for chunk in split_text(body):
+            # the first line tells which company and document the chunk comes from for more context.
+            texts.append(f"{meta['company']} ({meta['ticker']}), {meta['doc_type']}, {meta['date']}\n{chunk}")
+            metadatas.append(
+                {"ticker": meta["ticker"], "doc_type": meta["doc_type"], "date": meta["date"], "source": path.name}
+            )
 
-embeddings = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL)
-index = FAISS.from_texts(texts, embeddings, metadatas=metadatas)
-index.save_local(INDEX_DIR)
-print(f"Indexed {len(texts)} chunks from {len(set(m['source'] for m in metadatas))} files")
+    embeddings = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL)
+    index = FAISS.from_texts(texts, embeddings, metadatas=metadatas)
+    index.save_local(INDEX_DIR)
+    print(f"Indexed {len(texts)} chunks from {len(set(m['source'] for m in metadatas))} files")
+
+if __name__ == "__main__":
+    main()
