@@ -2,7 +2,7 @@ import json
 
 from agent import ask
 
-with open("data/eval_questions.json") as f:
+with open("data/eval_questions.json", encoding="utf-8") as f:
     questions = json.load(f)
 
 results = []
@@ -24,5 +24,5 @@ report = "\n\n".join(results) + f"\n\nCorrect: {correct}/{len(questions)}"
 
 print(report)
 
-with open("eval_results.md", "w") as f:
+with open("eval_results.md", "w", encoding="utf-8") as f:
     f.write(report)

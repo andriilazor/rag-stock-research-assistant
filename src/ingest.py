@@ -10,7 +10,7 @@ CHUNK_SIZE = 800
 
 # splits the report into its metadata block
 def read_report(path):
-    _, header, body = path.read_text().split("---", 2)
+    _, header, body = path.read_text(encoding="utf-8").split("---", 2)
     metadata = dict(line.split(": ", 1) for line in header.strip().splitlines())
     body = re.sub(r"<!--.*?-->", "", body, flags=re.DOTALL) # here we removing hidden HTML comments
     return metadata, body.strip()

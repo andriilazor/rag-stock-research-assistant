@@ -10,10 +10,10 @@ from config import EMBED_MODEL, INDEX_DIR, OLLAMA_URL
 embeddings = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL)
 index = FAISS.load_local(INDEX_DIR, embeddings, allow_dangerous_deserialization=True)
 
-with open("data/prices.csv") as f:
+with open("data/prices.csv", encoding="utf-8", newline="") as f:
     PRICES = list(csv.DictReader(f)) # load prices
 
-with open("data/metrics.json") as f:
+with open("data/metrics.json", encoding="utf-8") as f:
     METRICS = json.load(f) # load metrics
 
 TICKERS = list(METRICS["companies"])
