@@ -58,3 +58,8 @@ def ask(question):
         "tool_calls": tool_calls,
         "latency_ms": int((time.time() - start) * 1000),
     }
+    
+async def ask_stream(question):
+    async for token, _ in agent.astream(make_input(question), STEP_LIMIT, stream_mode="messages"):
+        if token.type == "AIMessageChunk" and token.content:
+            yield token.content
