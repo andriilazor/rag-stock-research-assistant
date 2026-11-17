@@ -105,8 +105,6 @@ curl -N -X POST http://localhost:8000/chat/stream \
   -d '{"question": "What is the P/E ratio of NWE?"}'
 ```
 
-`src/stream_client.py` prints the stream as plain text on any OS.
-
 ## Tests
 
 `pytest -v` checks the tools and the ingest functions without calling the model, so the tests run in under a second. The index must exist (`python src/ingest.py`).
